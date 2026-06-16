@@ -9,7 +9,7 @@ DESTINATION_DIR="./backup"
 
 #Log folder and file
 LOG_DIR="./log"
-LOG_FILE="$LOG_DIR/backup.sh"
+LOG_FILE="$LOG_DIR/backup.log"
 
 #Retention Policy
 RETENTION_DAY=7
