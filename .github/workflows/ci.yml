@@ -9,7 +9,7 @@ on:
 
 jobs:
   test-scripts:
-    runs-on: ubantu-26.04
+    runs-on: ubantu-22.04
     steps:
 
     - name: Checkout Automated Linux Backup and Recovery System Code
