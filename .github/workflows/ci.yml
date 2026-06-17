@@ -5,13 +5,12 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:
 
 jobs:
   test:
     runs-on: ubantu-latest
 
     steps:
-    - name: Automated Linux Backup and Recovery System Code
+    - name: Test CI
       run: echo "CI is working Successfully"
       
