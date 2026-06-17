@@ -9,9 +9,9 @@ on:
 
 jobs:
   test-scripts:
-    runs_on: ubantu-latest
+    runs-on: ubantu-latest
+    steps:
 
-  steps:
     - name: Checkout Automated Linux Backup and Recovery System Code
       uses: actions/checkout@v4
 
