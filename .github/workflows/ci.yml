@@ -12,6 +12,6 @@ jobs:
     runs-on: ubantu-latest
 
     steps:
-    - name: Test CI
+    - name: Automated Linux Backup and Recovery System CI Pipeline
       run: echo "CI is working Successfully"
       
