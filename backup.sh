@@ -14,6 +14,12 @@ LOG_FILE="$LOG_DIR/backup.log"
 #Retention Policy
 RETENTION_DAY=7
 
+#User Details for rsync
+REMOTE_USER=user
+REMOTE_HOST="192.168.1.10"
+REMOTE_DIR="/home/user/remote_dir"
+
+
 #Current TimeStamp
 TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
 
@@ -43,3 +49,7 @@ fi
 #Delete Old Backup
 find "$DESTINATION_DIR" -type f -name "*.tar.gz" -mtime +$RETENTION_DAY -exec rm -f {} \;
 echo "[TIMESTAMP] RETENTION : Backup Deleted older than $RETENTION_DAY Days" >>$LOG_FILE
+
+
+#Rsync
+rsync -avz backup/*.tar.gz remote-backup/
