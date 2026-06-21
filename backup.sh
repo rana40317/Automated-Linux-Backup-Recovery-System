@@ -20,6 +20,8 @@ REMOTE_HOST="192.168.1.10"
 REMOTE_DIR="/home/user/remote_dir"
 
 
+
+
 #Current TimeStamp
 TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
 
