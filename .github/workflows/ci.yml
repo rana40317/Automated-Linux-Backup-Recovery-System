@@ -1,0 +1,21 @@
+name: Automated Linux Backup and Recovery System
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  backup-test:
+    runs-on: ubantu-latest
+    
+    Steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      - name: Make Script Executable
+        run: chmod +x backup.sh
+      - name: Run Backup Script
+        run: ./backup.sh
+      - name: Verify Backup Created
+        run: ls -l backup/
+       
