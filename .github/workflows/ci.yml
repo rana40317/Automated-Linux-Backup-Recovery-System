@@ -9,7 +9,7 @@ jobs:
   backup-test:
     runs-on: ubantu-latest
     
-    Steps:
+    steps:
       - name: Checkout Code
         uses: actions/checkout@v4
       - name: Make Script Executable
