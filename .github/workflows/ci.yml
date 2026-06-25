@@ -2,12 +2,11 @@ name: Automated Linux Backup and Recovery System
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
-  backup-test:
-    runs-on: ubantu-latest
+  backup_test:
+    runs-on: ubuntu-latest
     
     steps:
       - name: Checkout Code
