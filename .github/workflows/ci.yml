@@ -3,6 +3,8 @@ name: Automated Linux Backup and Recovery System
 on:
   push:
     branches: [ main ]
+  pull:
+    branches: [ main ]
       
 
 jobs:
@@ -16,6 +18,23 @@ jobs:
         run: chmod +x backup.sh
       - name: Run Backup Script
         run: ./backup.sh
+      - name: Create folders
+        run: mkdir -p test_source
+             echo "This is a test file" > test_source/file1.txt
+             mkdir -p backup
+             mkdir -p logs
+      - name: Create config file for CLI
+        run: cat > config.conf << EOF
+             SOURCE_DIR="./test_source"
+             DESTINATION_DIR="./backup"
+             LOG_DIR="./logs"
+             LOG_FILE="./logs/backup.log"
+             RETENTION_DAYS=7
+             EOF
+      - name: Run backup script
+        run: ./backup.sh    
       - name: Verify Backup Created
         run: ls -l backup/
+      - name: Check log file
+        run: cat logs/backup.log
        
