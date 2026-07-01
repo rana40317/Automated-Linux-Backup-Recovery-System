@@ -20,3 +20,33 @@
 [TIMESTAMP] RETENTION : Backup Deleted older than 7 Days
 [2026-06-21_11-38-45] Sucess : backup_2026-06-21_11-38-45.tar.gz created
 [TIMESTAMP] RETENTION : Backup Deleted older than 7 Days
+[2026-06-28_07-00-22] Sucess : backup_2026-06-28_07-00-22.tar.gz created
+[TIMESTAMP] RETENTION : Backup Deleted older than 7 Days
+[2026-06-28_07-02-15] Sucess : backup_2026-06-28_07-02-15.tar.gz created
+[TIMESTAMP] RETENTION : Backup Deleted older than 7 Days
+[2026-06-30_16-15-55] Sucess: Backup File Created: backup_2026-06-30_16-15-55.tar.gz
+[2026-06-30_16-19-24] Sucess: Backup File Created: backup_2026-06-30_16-19-24.tar.gz
+[2026-06-30_16-24-09] Sucess: Backup File Created: backup_2026-06-30_16-24-09.tar.gz
+[2026-06-30_16-25-12] Sucess: Backup File Created: backup_2026-06-30_16-25-12.tar.gz
+[2026-06-30_16-27-12] Sucess: Backup File Created: backup_2026-06-30_16-27-12.tar.gz
+[2026-06-30_16-28-43] Sucess: Backup File Created: backup_2026-06-30_16-28-43.tar.gz
+[2026-06-30_16-28-43] Retention: Deleted Backups older than 7 days
+[2026-06-30_16-30-38] Sucess: Backup File Created: backup_2026-06-30_16-30-38.tar.gz
+[2026-06-30_16-30-38] Retention: Deleted Backups older than 7 days
+[2026-06-30_16-31-21] Sucess: Backup File Created: backup_2026-06-30_16-31-21.tar.gz
+[2026-06-30_16-31-21] Retention: Deleted Backups older than 7 days
+[2026-06-30_16-36-53] Sucess: Backup File Created: backup_2026-06-30_16-36-53.tar.gz
+Backup Verification Failed.
+[2026-06-30_16-38-06] Sucess: Backup File Created: backup_2026-06-30_16-38-06.tar.gz
+Backup Verification Failed.
+[2026-06-30_16-41-17] Sucess: Backup File Created: backup_2026-06-30_16-41-17.tar.gz
+Backup Verification Failed.
+[2026-06-30_16-45-36] Sucess: Backup File Created: backup_2026-06-30_16-45-36.tar.gz
+Backup Verification Sucessfull. 
+[2026-06-30_16-45-36] Retention: Deleted Backups older than 7 days
+[2026-06-30_16-47-51] Sucess: Backup File Created: backup_2026-06-30_16-47-51.tar.gz
+Backup Verification Sucessfull. 
+[2026-06-30_16-47-51] Retention: Deleted Backups older than 7 days
+[2026-06-30_16-49-01] Sucess: Backup File Created: backup_2026-06-30_16-49-01.tar.gz
+Backup Verification Sucessfull. 
+[2026-06-30_16-49-01] Retention: Deleted Backups older than 7 days

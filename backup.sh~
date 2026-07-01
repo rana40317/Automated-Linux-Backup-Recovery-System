@@ -1,0 +1,59 @@
+#!/bin/bash
+
+#Load  Confiuration File"
+
+CONFIG_FILE="./config.conf"
+
+if [ ! -f "$CONFIG_FILE" ]; then
+	echo "Configuration File not found"
+	exit 1
+fi
+
+SOURCE="CONFIG_FILE"
+
+#Create Required Folders
+mkdir -p "$DESTINATION_DIR"
+mkdir -p "$LOG_FILE"
+
+#Current Timestamp
+TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
+BACKUP_FILE="${BACKUP_PREFIX}_${TIMESTAMP}.tar.gz"
+echo "Starting Backup."
+
+#Backup Filename
+#backup_FILE="backup_$(TIMESTAMP).tar.gz"
+
+#echo "Starting backup"
+
+#Create compressed Backup
+tar -czf "$DESTINATION_DIR/$BACKUP_FILE" "$SOURCE_DIR"
+
+#Check Backup Status
+if [ $? -eq 0]; then
+	echo "[$TIMESTAMP] Sucess: Backup File Created: $BACKUP_FILE" >> "$LOG_FILE"
+	echo "BACKUP Sucessful"
+	echo "Backup File: $DESTINATION_DIR/$BACKUP_FILE"
+else
+	echo "[TIMESTAMP] Failed: Backup File not Created" >>"$LOG_FILE"
+	echo "Backup Failed"
+	exit 1
+fi
+
+#Delete Old Backups
+find "$DESTINATION_DIR" -type f -name "*.tar.gz" -mtime + "$RETENTION_DAYS" -exec rm -f {} \;
+
+echo "[$TIMESTAMP] Retention: Deleted Backups older than $RETENTION_DAYS" days" >>"$LOG_FILE"
+
+if [ "$ENABLE_REMOTE_BACKUP" ="yes" ]; then
+	mkdir -p "$REMOTE_BACKUP_DIR"
+	cp "$DESTINATION_DIR/$BACKUP_FILE" "$REMOTE_BACKUP_DIR/"
+	echo "Remote backup Completed."
+fi
+
+
+#Remote Backup using rsync
+rsync -avz "$DESTINATION_DAYS days" >> "$LOG_FILE" "$REMOTE_USER@REMOTE_HOST:$REMOTE_DIR"
+
+
+echo "Backup Process Completed."
+

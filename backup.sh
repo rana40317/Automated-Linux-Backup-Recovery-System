@@ -1,57 +1,55 @@
-
 #!/bin/bash
 
-#Source folder for backup
-SOURCE_DIR="./files"
+#Load  Confiuration File"
 
-#Destination folder for backup
-DESTINATION_DIR="./backup"
+CONFIG_FILE="./config.conf"
 
-#Log folder and file
-LOG_DIR="./log"
-LOG_FILE="$LOG_DIR/backup.log"
+if [ ! -f "$CONFIG_FILE" ]; then
+	echo "Configuration File not found"
+	exit 1
+fi
 
-#Retention Policy
-RETENTION_DAY=7
+source "$CONFIG_FILE"
 
-#User Details for rsync
-REMOTE_USER=user
-REMOTE_HOST="192.168.1.10"
-REMOTE_DIR="/home/user/remote_dir"
-
-
-
-
-#Current TimeStamp
-TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
-
-#Backup filename
-BACKUP_FILE="backup_${TIMESTAMP}.tar.gz"
-
-#create a backup file if it odesn't exist
-
+#Create Required Folders
 mkdir -p "$DESTINATION_DIR"
 mkdir -p "$LOG_DIR"
 
-echo "Starting Backup"
+#Current Timestamp
+TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
+BACKUP_FILE="backup_${TIMESTAMP}.tar.gz"
+BACKUP_PATH="$DESTINATION_DIR/$BACKUP_FILE"
+echo "Starting Backup."
 
-#create compressed backup
-tar -czf "$DESTINATION_DIR/$BACKUP_FILE" "$SOURCE_DIR"
 
-#check wheather backup succeded or not
+#Create compressed Backup
+tar -czf "$BACKUP_PATH" "$SOURCE_DIR"
+
+#Check Backup Status
 if [ $? -eq 0 ]; then
-	echo "[$TIMESTAMP] Sucess : $BACKUP_FILE created" >> "$LOG_FILE"
-	echo "Backup Sucessfull"
+	echo "[$TIMESTAMP] Sucess: Backup File Created: $BACKUP_FILE" >> "$LOG_FILE"
+	echo "BACKUP Sucessful"
 	echo "Backup File: $DESTINATION_DIR/$BACKUP_FILE"
 else
-	echo "[$TIMESTAMP] FAILED : Backup File Creation Failed" >>"$LOG_FILE"
+	echo "[TIMESTAMP] Failed: Backup File not Created" >>"$LOG_FILE"
 	echo "Backup Failed"
+	exit 1
 fi
 
-#Delete Old Backup
-find "$DESTINATION_DIR" -type f -name "*.tar.gz" -mtime +$RETENTION_DAY -exec rm -f {} \;
-echo "[TIMESTAMP] RETENTION : Backup Deleted older than $RETENTION_DAY Days" >>$LOG_FILE
+#Verify Backup
+echo "Verifying Backup..."
+if tar -tzf "$BACKUP_PATH" > /dev/null 2>&1; then
+	echo "Backup Verification Sucessfull. " >> "$LOG_FILE"
+	echo "$LOG_FILE"
+else
+	echo "Backup Verification Failed." >> "$LOG_FILE"
+	exit 1
+fi
+
+#Delete Old Backups
+find "$DESTINATION_DIR" -type f -name "*.tar.gz" -mtime +"$RETENTION_DAYS" -exec rm -f {} \;
+
+echo "[$TIMESTAMP] Retention: Deleted Backups older than $RETENTION_DAYS days" >> "$LOG_FILE"
 
 
-#Rsync
-rsync -avz backup/*.tar.gz remote-backup/
+

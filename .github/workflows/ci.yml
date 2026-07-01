@@ -3,12 +3,13 @@ name: Automated Linux Backup and Recovery System
 on:
   push:
     branches: [ main ]
+      
 
 jobs:
   backup_test:
     runs-on: ubuntu-latest
     
-    steps:
+    Steps:
       - name: Checkout Code
         uses: actions/checkout@v4
       - name: Make Script Executable
