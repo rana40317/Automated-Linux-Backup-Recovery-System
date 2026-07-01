@@ -16,11 +16,9 @@ jobs:
         uses: actions/checkout@v4
       - name: Make Script Executable
         run: chmod +x backup.sh
-      - name: Run Backup Script
-        run: ./backup.sh
       - name: Create folders
-        run: mkdir -p test_source
-             echo "This is a test file" > test_source/file1.txt
+        run: mkdir -p files
+             echo "This is a test file" > files/file1.txt
              mkdir -p backup
              mkdir -p logs
       - name: Create config file for CLI
