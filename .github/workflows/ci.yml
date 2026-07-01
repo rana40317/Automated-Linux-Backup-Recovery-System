@@ -17,13 +17,15 @@ jobs:
       - name: Make Script Executable
         run: chmod +x backup.sh
       - name: Create folders
-        run: mkdir -p files
+        run: |
+             mkdir -p files
              echo "This is a test file" > files/file1.txt
              mkdir -p backup
              mkdir -p logs
       - name: Create config file for CLI
-        run: cat > config.conf << EOF
-             SOURCE_DIR="./test_source"
+        run: |
+             cat > config.conf <<EOF
+             SOURCE_DIR="./files"
              DESTINATION_DIR="./backup"
              LOG_DIR="./logs"
              LOG_FILE="./logs/backup.log"
